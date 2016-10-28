@@ -1,0 +1,134 @@
+﻿<div class="container target margin-top-10" ng-controller="newsLetterController">
+
+    <div class="container-fluid profile-list ">
+
+        
+
+        <div class="callout">
+
+            <img src="http://localhost:3000/pages/img/NewsLetterBP.jpg"    class="img-responsive" alt="Cinque Terre"/>
+        </div>
+            <div class="col-sm-12 main margin-top-05">
+
+
+
+                <div class="panel panel-default target">
+                    <div class="panel-heading search-results-header" contenteditable="false">BP Account News</div>
+                    <div class="panel-body BPNewscolor">
+                        <div class="row">
+                            <div class="col-md-12  margin-top-05" ng-repeat="serviceprofile in bpNewsarticlesList">
+                                <div class="media block-update-card margin-top-02">
+                                    <a class="pull-left">
+                                        <img class="media-object update-card-MDimentions" src="{{staticurl + serviceprofile.Image}}" ng-click="showServiceProfile()" alt="{{staticurl + serviceprofile.Image}}">
+                                    </a>
+                                    <div class="media-body update-card-body">
+                                        <div class="update-card-body">
+                                            <h3 class="media-heading" ng-click="showServiceProfile()">{{serviceprofile.ContentTitle}} </h3>
+                                            <p>{{serviceprofile.Content }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-12 main margin-top-05">
+
+               
+
+                <div class="panel panel-default target">
+                    <div class="panel-heading search-results-header" contenteditable="false">Success stories or customer spotlights:</div>
+                    <div class="panel-body CustomerServicecolor">
+                        <div class="row">
+                            <div class="col-md-12  margin-top-05" ng-repeat="serviceprofile in customersarticlesList">
+                                <div class="media block-update-card margin-top-02">
+                                    <a class="pull-right">
+                                        <img class="media-object update-card-MDimentions" src="{{staticurl + serviceprofile.Image}}" ng-click="showServiceProfile()" alt="{{staticurl + serviceprofile.Image}}">
+                                    </a>
+                                    <div class="media-body update-card-body">
+                                        <div class="update-card-body">
+                                            <h3 class="media-heading" ng-click="showServiceProfile()">{{serviceprofile.ContentTitle}} </h3>
+                                            <p>{{serviceprofile.Content }}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-sm-12 main margin-top-05">
+
+             
+
+                <div class="panel panel-default target">
+                    <div class="panel-heading search-results-header" contenteditable="false">Technology</div>
+                    <div class="panel-body Technologycolor">
+                        <div class="row">
+                            <div class="col-md-12  margin-top-05" ng-repeat="serviceprofile in technologyarticlesList">
+                                <div class="media block-update-card margin-top-02">
+                                    <a class="pull-left">
+                                        <img class="media-object update-card-MDimentions" src="{{staticurl + serviceprofile.Image}}" ng-click="showServiceProfile()" alt="{{staticurl + serviceprofile.Image}}">
+                                    </a>
+                                    <div class="media-body update-card-body">
+                                        <div class="update-card-body">
+                                            <h3 class="media-heading" ng-click="showServiceProfile()">{{serviceprofile.ContentTitle}} </h3>
+                                            <p>{{serviceprofile.Content }}</p>
+                                        </div>
+                                    </div>
+                             
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-sm-12 main margin-top-05">
+
+               
+                <div class="panel panel-default target">
+                    <div class="panel-heading search-results-header" contenteditable="false">Employee spotlight or profile:</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12  margin-top-05" ng-repeat="serviceprofile in editorialsarticlesList">
+                                <div class="media block-update-card margin-top-02">
+                                    <a class="pull-left">
+                                        <img class="media-object update-card-MDimentions" src="{{staticurl + serviceprofile.Image}}" ng-click="showServiceProfile()" alt="{{staticurl + serviceprofile.Image}}">
+                                    </a>
+                                    <div class="media-body update-card-body">
+                                        <div class="update-card-body">
+                                            <h3 class="media-heading" ng-click="showServiceProfile()">{{serviceprofile.ContentTitle}} </h3>
+                                            <p>{{serviceprofile.Content }}</p>
+                                        </div>
+                                    </div>
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div><!--/.container-->
+    </div>
+

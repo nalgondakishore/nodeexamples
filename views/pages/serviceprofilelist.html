@@ -1,0 +1,114 @@
+<div class="container target margin-top-10" ng-controller="serviceProfileListController">
+<div >
+
+        <form  class="form-horizontal search-form">
+          <div class="row">
+            <div class="col-lg-6 col-lg-offset-5">
+              <div class="input-group">
+                <input type="text" googleplace placeholder="Change Location" ng-model="searchlocation" class="form-control input-search">
+                <span class="input-group-btn">
+                  <button class="btn btn-search btn-theme" ng-click="search()" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+          </div><!-- /.row -->
+        </form>
+
+        </div>
+    <div class="container-fluid profile-list margin-top-05">
+      
+      <div class="row row-offcanvas row-offcanvas-left" ng-class="{'active' : toggle}" >
+        
+         <div class="col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+           
+<form class="form-horizontal">
+                <fieldset>
+
+    <div class="form-group">
+                    <label class="control-label  " for="sortCoption"><u>Show Results for</u></label></div>
+                <!-- Select Basic -->
+                <div class="form-group margin-bottom-0  pull-left">
+                    <label class="control-label" for="sortCoption">Sort By</label></div>
+                    <div class="form-group margin-bottom-0 ">
+                  <div >
+                    <select id="sortcategory" ng-model="sortcategory"  name="sortCoption" class="form-control">
+                            <option value={{sortcategory.value}}  ng-repeat="sortcategory in sortcategorylist"><a >{{sortcategory.text}}</a></option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Select Multiple -->
+                <div class="form-group margin-bottom-0 ">
+                    <label class="control-label  " for="sortCoption">Preferred date</label></div>
+
+                            <div class="form-group">   <div >
+                                 <input type="text" placeholder="Select date" id="dueDate" name="dueDate" ng-model="dt" 
+      class="form-control" uib-datepicker-popup="shortDate" datepicker-append-to-body="true"
+                                        is-open="data.isOpen" ng-click="data.isOpen = true"></div>
+        </div>
+                        <div class="form-group margin-bottom-0 ">
+                    <label class="control-label" for="sortCoption">Prefered time</label></div>
+                                        <div class="form-group">
+                    <select id="selecttime"  ng-model="filtertime" name="selecttime" class="form-control">                            <option value={{timeslot.value}}  ng-repeat="timeslot in timeslots"><a >{{timeslot.text}}</a></option>
+
+                    </select>
+                </div>
+                    
+                     <div class="form-group margin-bottom-0 pull-right">
+                  <button id="filter" ng-click="applyfilter()" name="filter" class="btn btn-info"><span class="glyphicon glyphicon-filter"></span> Apply Filter</button></div>
+                </fieldset>
+            </form>
+            
+          
+        </div><!--/span-->
+        
+        <div class="col-sm-9 main">
+          
+          <!--toggle sidebar button-->
+          <p class="visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" ng-click="toggle = !toggle" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+          </p>
+          
+		  <div class="panel panel-default target">
+                    <div class="panel-heading search-results-header" contenteditable="false" >{{resultspanelheader}}</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6" ng-repeat="serviceprofile in userServiceProfileList" >
+                                <div class="media block-update-card margin-top-02">
+                    <a class="pull-left" >
+                        <img class="media-object update-card-MDimentions"   src="{{serviceprofile.image}}" ng-click="showServiceProfile()" alt="{{serviceprofile.name}}">
+                    </a>
+                    <div class="media-body update-card-body">
+                        <h3 class="media-heading" ng-click="showServiceProfile()">{{serviceprofile.fullname}} </h3>
+
+                                        <cite title={{serviceprofile.location}}>
+                                        {{serviceprofile.servicelocation}} <i class="glyphicon glyphicon-map-marker">
+                                        </i>
+                                        </cite>
+                            <br/>
+                                
+                                 <div helpmerating score="profilerating" max="5" class="pull-left rating-disabled small-rating"></div><label class="pull-left">({{serviceprofile.reviewerscount}})</label><span class="badge badge-success pull-right">{{serviceprofile.ratecard}}</span>
+                            
+                                                        
+                    </div>
+
+                    <div class="media-body block-update-card-child">
+                    <div class="update-card-body">
+                        <div class="update-card-body">
+                           <p>{{serviceprofile.serviceprofilesummary }}</p>
+                        </div>
+                    </div>
+
+                   </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</div><!--/.container-->
+</div>
+

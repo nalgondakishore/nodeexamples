@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="helpme">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>BP News Letter hello</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+        
+        <!-- Custom CSS -->
+        <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js"></script>
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.2.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+        <script src="//cdn.jsdelivr.net/satellizer/0.12.5/satellizer.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.2/angular-filter.js"></script>
+        <script src="js/helpme.js"></script>
+                <script src="js/directives.js"></script>
+         <script src="js/services.js"></script>
+                 <script src="js/controllers.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    </head>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" >
+    <!-- Navigation -->
+
+
+    <nav id="mainNav" class="navbar  navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span><i class="fa fa-bars"></i></span>
+          
+                </button>
+                <a class="navbar-brand page-scroll" href="#/"><b>BP NewsLetter (BETA)</b></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" >
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" data-toggle="collapse" data-target=".navbar-collapse.in" href="#/">Home</a>
+                    </li>
+
+                    <li>
+                        <a class="page-scroll" data-toggle="collapse" data-target=".navbar-collapse.in" href="#/serviceprovider">Content Provider</a>
+                    </li>
+                
+                    <li>
+                        <a class="page-scroll" data-toggle="collapse" data-target=".navbar-collapse.in" href="#/newsletter">NewsLetter</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" data-toggle="collapse" data-target=".navbar-collapse.in" href="#/Admin">Admin</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" data-toggle="collapse" data-target=".navbar-collapse.in" href="#signup" id="signIn_lnk">SignIn/Register</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    
+    <div id="main" style="background-color:white" class="margin-top-02"  >
+        <div  ng-view></div>
+
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="postprofile"></label>
+                <div class="col-md-4">
+                    <button id="generateLetter"  name="generateLetter" class="btn btn-theme">Generate Newsletter</button>
+                </div>
+            </div>
+            <div class="row ">
+                    <p class="text-muted pull-right">Copyright &copy; wipro 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Login Modal-->
+    <div class="modal fade bs-modal-sm" modal="showModal"  id="myModal" tabindex="-1" role="dialog"  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <br>
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a  id="login-signin" data-toggle="tab">Sign In</a></li>
+                        <li class=""><a id="login-signup" data-toggle="tab">Register</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+
+                        <div class="tab-pane fade active in" id="login-signin-div">
+                            <form class="form-horizontal">
+                                <fieldset>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="signin">Login with</label>
+                                        <div class="controls">
+                                            <button id="signin-fb" name="signin-fb" ng-click="authenticate('facebook')" class="btn  btn-facebook"><i class="fa fa-facebook  pull-left margin-top-02 pull-left"></i>facebook</button>
+                                            <button id="signin-google" name="signin-google" ng-click="authenticate('google')" class="btn  btn-google"><i class="fa fa-google-plus pull-left margin-top-02 pull-left"></i>google</button>
+                                            <button id="signin-twitter" name="signin-twitter" class="btn  btn-twitter"><i class="fa fa-twitter pull-left margin-top-02 pull-left"></i>twitter</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="signup-or-separator">
+                                        <h6 class="text">or</h6>
+                                        <hr>
+                                    </div>
+                                    <!-- Sign In Form -->
+                                    <!-- Text input-->
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input id="userid" name="userid" type="text" class="form-control input-medium" placeholder="username or e-mail" >
+                                        </div>
+                                    </div>
+
+                                    <!-- Password input-->
+                                    <div class="control-group">
+                                        <div class="controls control-label">
+                                            <input  id="passwordinput" name="passwordinput" class="form-control input-medium" type="password" placeholder="********" >
+                                        </div>
+                                    </div>
+
+                                    <!-- Multiple Checkboxes (inline) -->
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <label class="checkbox inline pull-left" for="rememberme-0">
+                                                <input type="checkbox" name="remember me" id="rememberme-0" value="Remember me">
+                                                remember me
+                                            </label>
+                                            <label class="pull-right margin-top-05">
+                                                <a href="#" class="pull-right">forgot password?</a>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="control-group margin-top-02">
+                                        <label class="control-label" for="signin"></label>
+                                        <div class="controls">
+                                            <button id="signin" name="signin"  class="btn  btn-block btn-success">Sign In</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="login-signup-div">
+                            <form id="login-sigup-form" class="form-horizontal">
+                                <fieldset>
+                                    <div>
+                                        <label class="pull-right">
+                                            Already a member?
+                                            <a href="#" class="pull-right">Sign In</a>
+                                        </label>
+                                    </div><br />
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="signin">Signup with</label>
+                                        <div class="controls">
+                                            <button id="signin-fb" name="signin-fb" class="btn  btn-facebook"><i class="fa fa-facebook  pull-left margin-top-02 pull-left"></i>facebook</button>
+                                            <button id="signin-google" name="signin-google" class="btn  btn-google"><i class="fa fa-google-plus pull-left margin-top-02 pull-left"></i>google</button>
+                                            <button id="signin-twitter" name="signin-twitter" class="btn  btn-twitter"><i class="fa fa-twitter pull-left margin-top-02 pull-left"></i>twitter</button>
+                                        </div>
+                                    </div>
+                                    <div class="control-group text-center margin-top-02">
+                                        <label>or</label>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button id="signup-mail" name="signup-mail" class="btn btn-block btn-warning"><i class="fa fa-envelope-o  pull-left margin-top-02 pull-left"></i>signup with email</button>
+                                        </div>
+                                    </div>
+
+
+
+                                </fieldset>
+                            </form>
+
+                            <form id="login-sigup-mail-form" class="form-horizontal hide">
+                                <fieldset>
+                                    <div>
+                                        <label class="pull-right">
+                                            Already a member?
+                                            <a  class="pull-right">Sign In</a>
+                                        </label>
+                                    </div><br />
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="signin">Signup with</label>
+                                        <div class="controls">
+                                            <button id="signin-fb" name="signin-fb" class="btn  btn-facebook"><i class="fa fa-facebook  pull-left margin-top-02 pull-left"></i>facebook</button>
+                                            <button id="signin-google" name="signin-google" class="btn  btn-google"><i class="fa fa-google-plus pull-left margin-top-02 pull-left"></i>google</button>
+                                            <button id="signin-twitter" name="signin-twitter" class="btn  btn-twitter"><i class="fa fa-twitter pull-left margin-top-02 pull-left"></i>twitter</button>
+                                        </div>
+                                    </div>
+                                    <div class="control-group text-center margin-top-02">
+                                        <label>or</label>
+                                    </div>
+
+                                    <!-- Sign Up Form -->
+                                    <!-- Text input-->
+                                    <!-- Text input-->
+                                    <div class="control-group margin-top-05">
+                                        <div class="controls">
+                                            <input id="userid" name="userid" class="form-control input-large" type="text" placeholder="first name" required="">
+                                        </div>
+                                    </div>
+                                    <div class="control-group margin-top-05">
+                                        <div class="controls">
+                                            <input id="userid" name="userid" class="form-control input-large" type="text" placeholder="last name" required="">
+                                        </div>
+                                    </div>
+                                    <div class="control-group margin-top-05">
+                                        <div class="controls">
+                                            <input id="userid" name="userid" class="form-control input-large" type="text" placeholder="e-mail" required="">
+                                        </div>
+                                    </div>
+                                    <!-- Password input-->
+                                    <div class="control-group margin-top-05">
+                                        <div class="controls">
+                                            <input id="password" name="password" class="form-control" type="password" placeholder="********" class="input-large" required="">
+                                            <em>1-8 Characters</em>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="control-group margin-top-05">
+                                        <div class="controls">
+                                            <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="********" class="input-large" required="">
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <div class="control-group">
+                                        <label class="control-label" for="confirmsignup"></label>
+                                        <div class="controls">
+                                            <button id="confirmsignup" name="confirmsignup" class="btn btn-success btn-block">Sign Up</button>
+                                        </div>
+                                    </div>
+
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script>
+        $("#generateLetter").click(function (e) {
+            html2canvas(document.getElementById('main'), {
+                //useCORS: true,
+                //logging: true,
+                //onrendered: function (canvas) {
+                //    //var img = canvas.toDataURL('image/png');
+                //    //var doc = new jsPDF();
+                //    //doc.addImage(img, 'JPEG', 20, 20);
+
+                //    //var imgData = canvas.toDataURL('image/jpeg');
+                //    //var doc = new jsPDF();
+                //    //doc.setFontSize(12);
+                //    //doc.addImage(imgData, 'JPEG', 15, 40, 180, 200);
+                //    //doc.save('sample-file.pdf');
+
+                //    var a = document.createElement('a');
+                //    // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+                //    a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+                //    a.download = 'BPNewsLetter.jpg';
+                //    a.click();
+
+                //}
+
+                allowTaint: true,
+                logging:true,
+                useCORS: true,             
+                onrendered: function (canvas) {
+                    var a = document.createElement('a');
+                        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+                        a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+                        a.download = 'BPNewsLetter.jpg';
+                        a.click();
+                }
+            });
+
+        });
+
+        // Closes the sidebar menu
+        $("#menu-close").click(function (e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        $("#signIn_lnk").click(function (e) {
+            //e.preventDefault();
+            $("#myModal").modal('show');
+        });
+
+        $("#signup-mail").click(function (e) {
+            //e.preventDefault();
+            $("#login-sigup-form").addClass('hide');
+            $("#login-sigup-mail-form").removeClass('hide');
+        });
+
+        $("#login-signin").click(function (e) {
+            //e.preventDefault();
+            $("#login-signin-div").addClass('active in');
+            $("#login-signup-div").removeClass('active in');
+        });
+        $("#login-signup").click(function (e) {
+            //e.preventDefault();
+            $("#login-signup-div").addClass('active in');
+            $("#login-signin-div").removeClass('active in');
+        });
+        
+    </script>
+</body>
+    
+</html>

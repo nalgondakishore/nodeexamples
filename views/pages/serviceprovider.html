@@ -1,0 +1,150 @@
+<section id="service-provider" ng-controller="serviceProviderController" class="portfolio ">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 ">
+            <h3 class="text-center color-me-orange ">Content Provider</h3>
+            <hr />
+            <div class="row">
+                <form class="form-horizontal" >
+                    <fieldset>
+
+                        <div class="form-group ">
+                            <label class="col-md-4  control-label" for="signin">Select Year and Month </label>
+                            <div class="col-md-8 controls">
+
+                                <bs-dropdown data-menu-type="button" select-val="selected_year = selectedVal"
+                                             preselected-item="selected_year" data-dropdown-data="Years"></bs-dropdown>
+
+                                <bs-dropdown data-menu-type="button" select-val="selected_month = selectedVal"
+                                             preselected-item="selected_month" data-dropdown-data="Months"></bs-dropdown>
+                                </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group ">
+                            <label class="col-md-4  control-label" for="signin">News content type: </label>
+                            <div class="col-md-8 controls">
+                                <div class="btn-group " data-toggle="buttons">
+                                    <label>
+                                        <input type="radio" ng-model="newsContent.ContentType" value="bpnews">BP News
+                                    </label>
+                                    <label>
+                                        <input type="radio" ng-model="newsContent.ContentType" value="technology"> Technology
+                                    </label>
+                                    <label>
+                                        <input type="radio" ng-model="newsContent.ContentType" value="stories"> Success stories
+                                    </label>
+                                    <label>
+                                        <input type="radio" ng-model="newsContent.ContentType" value="editorials"> Editorials
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="serviceprofile">Content Title:</label>
+                            <div class="col-md-5">
+                                <textarea class="form-control" id="ContentTitle" ng-model="newsContent.ContentTitle" name="ContentTitle">Latest Technologies</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="ratecard">Content</label>
+                            <div class="col-md-5">
+                                <textarea class="form-control" id="Content" ng-model="newsContent.Content" name="Content">Latest Technologies in Market is MEAN stack</textarea>
+                            </div>
+                        </div>
+
+                        <!-- File Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="filebutton">Image:</label>
+                            <div class="col-md-4">
+                                <input type="file" file-model="myFile" />
+                            </div>
+                        </div>
+
+                       
+
+                        <!-- Prepended text-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="prependedtext">Contact Number:</label>
+                            <div class="col-md-5">
+                                <input id="prependedtext" name="PostedBy" ng-model="newsContent.PostedBy" class="form-control" type="text">
+                            </div>
+                        </div>
+
+
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="savecontent"></label>
+                            <div class="col-md-4">
+                                <button type="submit" id="savecontent" ng-click="saveContent(newsContent)" name="savecontent" class="btn btn-success btn-theme">Save</button>
+                                <button type="reset" id="cancel" ng-click="clearAll(newsContent)" name="cancel" class="btn btn-danger btn-theme">Cancel</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+                <div class="panel-body">
+                    <form >
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ContentId</th>
+                                    <th>ContentType</th>
+                                    <th>ContentTitle</th>
+                                    <th>Content</th>
+                                    <th>Image</th>
+                                    <th>PostedBy</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="newsContent in newsContents">
+                                    
+                                    <td>
+                                       {{newsContent.ContentId}}
+                                    </td>
+                                    <td>
+                                        {{newsContent.ContentType}}
+                                    </td>
+                                    <td>
+                                        {{newsContent.ContentTitle}}
+                                    </td>
+                                    <td>
+                                        {{newsContent.Content}}
+                                    </td>
+                                    <td>
+                                        {{newsContent.Image}}
+                                    </td>
+                                    <td>
+                                        {{newsContent.PostedBy}}
+                                    </td>
+                                    <td>
+                                        {{newsContent.Status}}
+                                    </td>
+                                    <td >
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="Edit(newsContent)"><i class="glyphicon glyphicon-pencil"></i></button>
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="Delete(newsContent)"><i class="glyphicon glyphicon-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        
+                    </form>
+                </div>
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.col-lg-10 -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container -->
+</section>
